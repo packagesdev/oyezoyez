@@ -54,7 +54,7 @@
 	
 	[_filteredRecords removeAllObjects];
 	
-	[self.records enumerateObjectsUsingBlock:^(OYEDistributedNotificationRecord * bRecord, NSUInteger bIndex, BOOL *bOutStop) {
+	[[super records] enumerateObjectsUsingBlock:^(OYEDistributedNotificationRecord * bRecord, NSUInteger bIndex, BOOL *bOutStop) {
 		
 		if ([self shouldFilterRecord:bRecord]==NO)
 			[_filteredRecords addObject:bRecord];
@@ -84,7 +84,7 @@
 
 - (void)appendRecord:(OYEDistributedNotificationRecord *)inDistributedNotificationRecord
 {
-	[((NSMutableArray *)self.records) addObject:inDistributedNotificationRecord];
+	[((NSMutableArray *)[super records]) addObject:inDistributedNotificationRecord];
 	
 	BOOL tShouldFilterRecord=[self shouldFilterRecord:inDistributedNotificationRecord];
 	
